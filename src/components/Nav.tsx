@@ -1,11 +1,12 @@
-import { History, Zap } from 'lucide-react';
+import { History, Zap, Settings } from 'lucide-react';
 
 interface NavProps {
   onHistoryOpen: () => void;
+  onSettingsOpen: () => void;
   hasHistory: boolean;
 }
 
-export function Nav({ onHistoryOpen, hasHistory }: NavProps) {
+export function Nav({ onHistoryOpen, onSettingsOpen, hasHistory }: NavProps) {
   return (
     <header className="fixed top-0 left-0 right-0 z-40 border-b border-surface-700 bg-surface-900/80 backdrop-blur-md">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
@@ -21,16 +22,27 @@ export function Nav({ onHistoryOpen, hasHistory }: NavProps) {
           </span>
         </div>
 
-        <button
-          onClick={onHistoryOpen}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm text-surface-300 hover:text-slate-200 hover:bg-surface-700 border border-transparent hover:border-surface-500 transition-all duration-200"
-        >
-          <History className="w-4 h-4" />
-          <span className="hidden sm:inline">History</span>
-          {hasHistory && (
-            <span className="w-1.5 h-1.5 rounded-full bg-accent-blue"></span>
-          )}
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={onSettingsOpen}
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm text-surface-300 hover:text-slate-200 hover:bg-surface-700 border border-transparent hover:border-surface-500 transition-all duration-200"
+            title="API Key Settings"
+          >
+            <Settings className="w-4 h-4" />
+            <span className="hidden sm:inline">Settings</span>
+          </button>
+
+          <button
+            onClick={onHistoryOpen}
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm text-surface-300 hover:text-slate-200 hover:bg-surface-700 border border-transparent hover:border-surface-500 transition-all duration-200"
+          >
+            <History className="w-4 h-4" />
+            <span className="hidden sm:inline">History</span>
+            {hasHistory && (
+              <span className="w-1.5 h-1.5 rounded-full bg-accent-blue"></span>
+            )}
+          </button>
+        </div>
       </div>
     </header>
   );
